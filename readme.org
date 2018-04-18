@@ -1,0 +1,35 @@
+* Example of using shadow-cljs, Keechma and Macchiato together
+Provides a starting point to build an isomorphic app using ClojureScript.
+
+This means that it runs NodeJs in the backend, and JavaScript in the browser on
+the frontend.
+
+Because of the route driven nature of Keechma, a large part of the application
+will work in case JavaScript is not available on the client side.
+** Getting started
+#+BEGIN_SRC sh
+yarn install
+shadow-cljs watch server client
+#+END_SRC
+
+Then start the node server. I like using nodemon because it automatically
+restarts the server on code changes.
+
+#+BEGIN_SRC sh
+npm install -g nodemon
+nodemon out/example/server.js
+#+END_SRC
+** Notes
+This is pretty light on features at the moment, as I extracted it from a current
+larger project and removed as much as I can.
+
+Feel free to open an issue regarding this setup if you have any questions and
+I'll see if I can answer it and improve this example.
+
+We're using this set up for a interactive marketing landing page/funnel. 2 of
+the main requirements were fast initial load, which unfortunately meant that we
+couldn't wait for the entire ClojureScript bundle to download before displaying
+anything.
+
+With this setup, initial load is very fast, and then the compiled ClojureScript
+gets downloaded in the background and initializes the interactive components.

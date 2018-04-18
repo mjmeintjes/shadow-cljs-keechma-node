@@ -1,0 +1,15 @@
+; -*-Clojure-*-
+{:ignored-unused-namespaces [debux.cs.core
+                             oops.core
+                             taoensso.timbre
+                             clojure.test.check
+                             taoensso.truss]
+ :known-macros [devcards.core/defcard-rg
+                mount.core/defstate
+                devcards.core/defcard
+                devcards.core/deftest
+                reagent.core/with-let
+                cljs.test/async
+                cljs.test/deftest
+
+                keechma.toolbox.pipeline.core/pipeline!]}

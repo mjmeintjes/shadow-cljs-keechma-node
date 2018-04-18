@@ -1,0 +1,77 @@
+;; shadow-cljs configuration
+;; (shadow.cljs.devtools.api/nrepl-select :client)
+;; (shadow.cljs.devtools.api/nrepl-select :server)
+
+{:source-paths
+ ["src"
+  "macchiato-core/src"
+  "env/dev"]
+
+ :dependencies
+ [[bidi "2.1.2"]
+  [com.cemerick/piggieback "0.2.2"]
+  [com.taoensso/timbre "4.10.0"]
+  [com.taoensso/encore "2.94.0"]
+
+
+  [hickory "0.7.1"]
+  [macchiato/hiccups "0.4.1"]
+  [macchiato/core "0.2.7"]
+  [macchiato/env "0.0.6"]
+  [eval-soup "1.4.1"]
+  [form-juice "0.2.0"]
+
+  [mount "0.1.11"]
+  ;; needed for JDK 9 compatibility
+  [javax.xml.bind/jaxb-api "2.3.0"]
+  [org.clojure/core.incubator "0.1.3"]
+  [cljstache "2.0.1"]
+
+  [org.clojure/test.check "0.10.0-alpha2"]
+
+  ;; development/testing
+  [devcards "0.2.4"]
+  [data-frisk-reagent "0.4.5" :exclusions [cljsjs/react cljsjs/react-dom]]
+  [philoskim/debux "0.4.1"]
+  [com.taoensso/truss "1.5.0"]
+  [binaryage/devtools "0.9.9"]
+  ;;[org.clojure/test.check "0.9.0"]
+  [cider/cider-nrepl "0.17.0-SNAPSHOT"]
+
+  ;; general
+  [funcool/promesa "1.9.0"]
+  [funcool/httpurr "1.0.0"]
+  [com.taoensso/tufte "1.1.2"]
+
+  [binaryage/oops "0.5.8"]
+  [reagent "0.8.0-alpha2" :exclusions [keechma/entitydb cljsjs/react cljsjs/react-dom]]
+  [keechma "0.3.5" :exclusions [keechma/entitydb keechma/router cljsjs/react cljsjs/react-dom cuerdas]]
+  [keechma/entitydb "0.1.3"]
+  [keechma/toolbox "0.1.11" :exclusions [keechma cljsjs/react cljsjs/react-dom]]
+  [keechma/router "0.1.1"]]
+ ;; :nrepl
+ ;; {:port 8777}
+ :builds
+ {:server
+  {:id        :script
+   :target    :node-script
+   :compiler-options {:source-map true
+                      :infer-externs auto}
+   :main      example.core/main
+   :devtools {:before-load-async example.core/stop
+              :after-load example.core/start}
+   :output-to "out/example/server.js"}
+  :client
+  {:id        :script
+   :target    :browser
+   :compiler-options {:infer-externs auto}
+   :main      example.client.core/main
+   :devtools {:before-load example.client.core/stop
+              :after-load example.client.reloading/reload
+              :preloads []}
+   :output-dir "public/assets/app/js"
+   :asset-path "/assets/app/js"
+   :module-hash-names true
+   :modules {:main {:entries [example.client.core]}}}}
+
+ }
