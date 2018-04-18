@@ -26,7 +26,7 @@ larger project and removed as much as I can.
 Feel free to open an issue regarding this setup if you have any questions and
 I'll see if I can answer it and improve this example.
 
-We're using this set up for a interactive marketing landing page/funnel. 2 of
+We're using this set up for a interactive marketing landing page/funnel. One of
 the main requirements were fast initial load, which unfortunately meant that we
 couldn't wait for the entire ClojureScript bundle to download before displaying
 anything.
